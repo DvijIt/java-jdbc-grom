@@ -24,14 +24,15 @@ public class JDBCFirstStep {
         ) {
             try {
                 Class.forName(JDBC_DRIVER);
+                System.out.println(DB_URL);
             } catch (ClassNotFoundException e) {
                 System.out.println("Class " + JDBC_DRIVER + " not found");
             }
 
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS")) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT name" +
+                    " FROM USERS")) {
                 while (resultSet.next()) {
-                    System.out.println(resultSet.next());
-                    //TODO do something
+                    System.out.println("Object found");
                 }
             }
         } catch (SQLException e) {
