@@ -2,10 +2,13 @@ import java.sql.*;
 
 public class JDBCFirstStep {
     private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String DB_URL = "jdbc:oracle:thin:@ocid1.tenancy.oc1..aaaaaaaaiabmfqn2q33x3qfwgafaxpl6zrt554bcxyotyfjhkiz3bhewzejq:1521:orcl";
 
-    private static final String USER = "ADMIN";
-    private static final String PASSWORD = "Root12345678";
+    private static final String USER = "root";
+    private static final String PASSWORD = "root12345678";
+
+    private static final String dbServer = "oracle-38327-0.cloudclusters.net"; // change it to your database server name
+    private static final int dbPort = 38327; // change it to your database server port
+    private static final String DB_URL = String.format("jdbc:oracle:thin:@%s:%d:xe", dbServer, dbPort);
 
     //1,DB Driver
     //2. create connection
@@ -25,8 +28,9 @@ public class JDBCFirstStep {
                 System.out.println("Class " + JDBC_DRIVER + " not found");
             }
 
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM Test")) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS")) {
                 while (resultSet.next()) {
+                    System.out.println(resultSet.next());
                     //TODO do somethig
                 }
             }
