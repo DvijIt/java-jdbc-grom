@@ -31,7 +31,7 @@ public class JDBCFirstStep {
             try (ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS")) {
                 while (resultSet.next()) {
                     System.out.println(resultSet.next());
-                    //TODO do somethig
+                    //TODO do something
                 }
             }
         } catch (SQLException e) {
