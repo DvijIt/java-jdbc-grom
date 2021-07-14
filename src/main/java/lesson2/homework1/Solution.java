@@ -16,10 +16,29 @@ public class Solution {
     private static final String SELECT_ALL_PRODUCTS_BY_PRICE = "SELECT * FROM PRODUCTS WHERE PRICE <= 100";
     private static final String SELECT_ALL_PRODUCTS_BY_DESCRIPTION = "SELECT * FROM PRODUCTS WHERE LENGTH(DESCRIPTION) > 50";
 
+    private static final String INSERT_INTO_PRODUCT = "INSERT INTO PRODUCT VALUES(999, 'toy', 'for children', 60)";
+    private static final String DELETE_FROM_PRODUCT_WHERE_NAME_TOY = "DELETE FROM PRODUCT WHERE NAME!='toy'";
+    private static final String DELETE_FROM_PRODUCT_BY_PRICE = "DELETE FROM PRODUCT WHERE PRICE!=100";
+
     public static void main(String[] args) {
-        System.out.println(getAllProducts());
-        System.out.println(getProductsByPrice());
-        System.out.println(getProductsByDescription());
+//        System.out.println(getAllProducts());
+//        System.out.println(getProductsByPrice());
+//        System.out.println(getProductsByDescription());
+//        saveProduct();
+//        deleteProduct();
+//        deleteProductsByPrice();
+    }
+
+    static void saveProduct() {
+        executeQuery(INSERT_INTO_PRODUCT);
+    }
+
+    static void deleteProduct() {
+        executeQuery(DELETE_FROM_PRODUCT_WHERE_NAME_TOY);
+    }
+
+    static void deleteProductsByPrice() {
+        executeQuery(DELETE_FROM_PRODUCT_BY_PRICE);
     }
 
     public static List<Product> getAllProducts() {
@@ -36,17 +55,12 @@ public class Solution {
 
     public static List<Product> getProducts(String sql) {
         try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(sql);
-            return mapProduct(resultSet);
+            return mapProduct(statement.executeQuery(sql));
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return new ArrayList<>();
-    }
-
-    private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, USER, PASSWORD);
     }
 
     public static List<Product> mapProduct(ResultSet resultSet) throws SQLException {
@@ -63,5 +77,23 @@ public class Solution {
             e.printStackTrace();
             throw new SQLException("Unable to map products");
         }
+    }
+
+    static void executeQuery(String sql) {
+        try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
+            int response = statement.executeUpdate(sql);
+
+            if (response == 0) {
+                System.out.println("(" + sql + ") didn't executed");
+            } else {
+                System.out.println("(" + sql + ") succeeded");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DB_URL, USER, PASSWORD);
     }
 }
