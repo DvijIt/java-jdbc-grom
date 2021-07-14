@@ -1,4 +1,4 @@
-package lesson2.homework1;
+package lesson2.examples;
 
 public class Product {
     private long id;
@@ -47,7 +47,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "lesson2.homework1.Product{" +
+        return "lesson2.examples.Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

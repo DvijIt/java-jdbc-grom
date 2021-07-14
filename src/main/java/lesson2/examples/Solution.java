@@ -1,4 +1,4 @@
-package lesson2.homework1;
+package lesson2.examples;
 
 import java.sql.*;
 import java.util.ArrayList;

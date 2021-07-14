@@ -1,3 +1,5 @@
+package lesson2.examples;
+
 import java.util.Date;
 
 public class Order {
@@ -57,7 +59,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "lesson2.examples.Order{" +
                 "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
