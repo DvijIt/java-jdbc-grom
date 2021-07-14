@@ -1,3 +1,5 @@
+package lesson1;
+
 import java.sql.*;
 
 public class JDBCFirstStep {
@@ -9,6 +11,15 @@ public class JDBCFirstStep {
     private static final String dbServer = "oracle-38327-0.cloudclusters.net"; // change it to your database server name
     private static final int dbPort = 38327; // change it to your database server port
     private static final String DB_URL = String.format("jdbc:oracle:thin:@%s:%d:xe", dbServer, dbPort);
+
+    static {
+        try {
+            Class.forName(JDBC_DRIVER);
+            System.out.println(DB_URL);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class " + JDBC_DRIVER + " not found");
+        }
+    }
 
     //1,DB Driver
     //2. create connection
@@ -22,15 +33,7 @@ public class JDBCFirstStep {
             Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = connection.createStatement()
         ) {
-            try {
-                Class.forName(JDBC_DRIVER);
-                System.out.println(DB_URL);
-            } catch (ClassNotFoundException e) {
-                System.out.println("Class " + JDBC_DRIVER + " not found");
-            }
-
-            try (ResultSet resultSet = statement.executeQuery("SELECT name" +
-                    " FROM USERS")) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT name FROM USERS")) {
                 while (resultSet.next()) {
                     System.out.println("Object found");
                 }
