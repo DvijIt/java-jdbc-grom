@@ -1,4 +1,4 @@
-package lesson3;
+package lesson3.task1;
 
 public class Product {
     private long id;

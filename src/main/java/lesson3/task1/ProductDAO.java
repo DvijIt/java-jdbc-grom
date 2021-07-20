@@ -1,4 +1,4 @@
-package lesson3;
+package lesson3.task1;
 
 import java.sql.*;
 import java.util.ArrayList;
