@@ -19,7 +19,7 @@ public class Solution {
     private static final int ROWS_AMOUNT = 1000;
     private static final String PERFORMANCE_EXCEPTION_MESSAGE = "Unable to test performance";
 
-    //103404
+    //219142 (wifi)
     long testSavePerformance() throws PerformanceTestException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_TEST_SPEED)) {
@@ -41,7 +41,7 @@ public class Solution {
         throw new PerformanceTestException(PERFORMANCE_EXCEPTION_MESSAGE);
     }
 
-    //106088
+    //194013 (wifi)
     long testDeleteByIdPerformance() throws PerformanceTestException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_FROM_TEST_SPEED_BY_ID)) {
@@ -60,7 +60,7 @@ public class Solution {
         throw new PerformanceTestException(PERFORMANCE_EXCEPTION_MESSAGE);
     }
 
-    //206
+    //322 (wifi)
     long testDeletePerformance() throws PerformanceTestException {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement()) {
@@ -76,7 +76,7 @@ public class Solution {
         throw new PerformanceTestException(PERFORMANCE_EXCEPTION_MESSAGE);
     }
 
-    //103220
+    //179692 (wifi)
     long testSelectByIdPerformance() throws PerformanceTestException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_FROM_TEST_SPEED_BY_SINGLE_ID)) {
@@ -95,7 +95,7 @@ public class Solution {
         throw new PerformanceTestException(PERFORMANCE_EXCEPTION_MESSAGE);
     }
 
-    //308
+    //265 (wifi)
     long testSelectPerformance() throws PerformanceTestException {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement()) {
