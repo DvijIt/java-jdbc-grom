@@ -1,4 +1,6 @@
-package lesson4.task2;
+package lesson4.task2.DAO;
+
+import lesson4.task2.model.File;
 
 public class FileDAO {
 

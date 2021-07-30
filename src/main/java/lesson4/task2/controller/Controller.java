@@ -1,4 +1,7 @@
-package lesson4.task2;
+package lesson4.task2.controller;
+
+import lesson4.task2.model.File;
+import lesson4.task2.model.Storage;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package lesson4.task2;
+package lesson4.task2.model;
 
 public class File {
     private Long id;
