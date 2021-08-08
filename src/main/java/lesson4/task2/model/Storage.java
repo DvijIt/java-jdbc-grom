@@ -1,14 +1,12 @@
 package lesson4.task2.model;
 
-import java.util.Arrays;
-
 public class Storage {
     private Long id;
-    private String[] formatsSupported;
+    private String formatsSupported;
     private String storageCountry;
     private Long storageMaxSize;
 
-    public Storage(Long id, String[] formatsSupported, String storageCountry, Long storageMaxSize) {
+    public Storage(Long id, String formatsSupported, String storageCountry, Long storageMaxSize) {
         this.id = id;
         this.formatsSupported = formatsSupported;
         this.storageCountry = storageCountry;
@@ -23,11 +21,11 @@ public class Storage {
         this.id = id;
     }
 
-    public String[] getFormatsSupported() {
+    public String getFormatsSupported() {
         return formatsSupported;
     }
 
-    public void setFormatsSupported(String[] formatsSupported) {
+    public void setFormatsSupported(String formatsSupported) {
         this.formatsSupported = formatsSupported;
     }
 
@@ -51,7 +49,7 @@ public class Storage {
     public String toString() {
         return "Storage{" +
                 "id=" + id +
-                ", formatsSupported=" + Arrays.toString(formatsSupported) +
+                ", formatsSupported=" + formatsSupported +
                 ", storageCountry='" + storageCountry + '\'' +
                 ", storageMaxSize=" + storageMaxSize +
                 '}';
