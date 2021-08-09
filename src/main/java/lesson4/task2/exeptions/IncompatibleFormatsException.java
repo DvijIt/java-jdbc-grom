@@ -1,4 +1,4 @@
-package lesson4.task2.exceptions;
+package lesson4.task2.exeptions;
 
 public class IncompatibleFormatsException extends Exception {
     public IncompatibleFormatsException(String message) {
