@@ -1,6 +1,6 @@
 package lesson4.task2.controller;
 
-import lesson4.task2.exceptions.InvalidInputException;
+import lesson4.task2.exeptions.InvalidInputException;
 import lesson4.task2.model.File;
 import lesson4.task2.model.Storage;
 import lesson4.task2.service.Service;
