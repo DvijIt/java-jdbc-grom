@@ -40,8 +40,9 @@ public class ProductRepository {
         Session session = new HibernateUtils().createSessionFactory().openSession();
 
         session.getTransaction().begin();
-
-        session.delete(id);
+        Product product = new Product();
+        product.setId(id);
+        session.delete(product);
 
         session.getTransaction().commit();
 
