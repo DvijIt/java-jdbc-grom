@@ -1,4 +1,4 @@
-package lesson4.task2.exeptions;
+package lesson4.task2.exceptions;
 
 public class NoSpaceException extends Exception {
     public NoSpaceException(String message) {

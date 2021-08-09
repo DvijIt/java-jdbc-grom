@@ -1,9 +1,9 @@
 package lesson4.task2.service;
 
 import lesson4.task2.DAO.StorageDAO;
-import lesson4.task2.exeptions.IncompatibleFormatsException;
-import lesson4.task2.exeptions.InvalidInputException;
-import lesson4.task2.exeptions.NoSpaceException;
+import lesson4.task2.exceptions.IncompatibleFormatsException;
+import lesson4.task2.exceptions.InvalidInputException;
+import lesson4.task2.exceptions.NoSpaceException;
 import lesson4.task2.model.File;
 import lesson4.task2.model.Storage;
 
