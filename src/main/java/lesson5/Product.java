@@ -1,5 +1,12 @@
 package lesson5;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PRODUCTS")
 public class Product {
     private long id;
     private String name;
@@ -13,6 +20,12 @@ public class Product {
         this.price = price;
     }
 
+    public Product() {
+
+    }
+
+    @Id
+    @Column(name = "ID")
     public long getId() {
         return id;
     }
@@ -21,6 +34,7 @@ public class Product {
         this.id = id;
     }
 
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -29,6 +43,7 @@ public class Product {
         this.name = name;
     }
 
+    @Column(name = "PRICE")
     public int getPrice() {
         return price;
     }
@@ -37,6 +52,7 @@ public class Product {
         this.price = price;
     }
 
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
@@ -47,7 +63,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "lesson2.examples.Product{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
