@@ -1,4 +1,4 @@
-package hibernate.lesson1;
+package hibernate.lesson2;
 
 import javax.persistence.*;
 
@@ -22,7 +22,7 @@ public class Product {
     }
 
     @Id
-    @SequenceGenerator(name = "PR_SEQ", sequenceName = "PRODUCT_SEQ")
+    @SequenceGenerator(name = "PR_SEQ", sequenceName = "PRODUCT_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PR_SEQ")
     @Column(name = "ID")
     public long getId() {
