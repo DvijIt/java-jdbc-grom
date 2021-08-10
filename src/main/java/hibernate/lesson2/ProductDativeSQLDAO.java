@@ -5,13 +5,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import org.hibernate.query.NativeQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ProductDAOHQL {
+public class ProductDativeSQLDAO {
     private static final String SELECT_BY_ID = "FROM Product p WHERE p.id=:id";
     private static final String SELECT_PRODUCTS_BY_NAME = "FROM Product p WHERE p.name=:name";
     private static final String SELECT_PRODUCTS_BY_NAME_LIKE = "FROM Product p WHERE p.name like :name";
@@ -32,7 +32,7 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session.createQuery(SELECT_BY_ID, Product.class)
+            NativeQuery<Product> query = session.createNativeQuery(SELECT_BY_ID, Product.class)
                     .setParameter("id", id);
             product.set(query.getSingleResult());
 
@@ -57,7 +57,7 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session.createQuery(SELECT_PRODUCTS_BY_NAME, Product.class)
+            NativeQuery<Product> query = session.createNativeQuery(SELECT_PRODUCTS_BY_NAME, Product.class)
                     .setParameter("name", name);
             products.addAll(query.list());
 
@@ -82,7 +82,7 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session.createQuery(SELECT_PRODUCTS_BY_NAME_LIKE, Product.class)
+            NativeQuery<Product> query = session.createNativeQuery(SELECT_PRODUCTS_BY_NAME_LIKE, Product.class)
                     .setParameter("name", "%" + name + "%");
             products.addAll(query.list());
 
@@ -107,8 +107,8 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session
-                    .createQuery(SELECT_PRODUCTS_BY_PRICE, Product.class)
+            NativeQuery<Product> query = session
+                    .createNativeQuery(SELECT_PRODUCTS_BY_PRICE, Product.class)
                     .setParameter("from", price - delta)
                     .setParameter("to", price + delta);
             products.addAll(query.list());
@@ -134,8 +134,8 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session
-                    .createQuery(SELECT_PRODUCTS_BY_NAME_ASC_ORDER, Product.class)
+            NativeQuery<Product> query = session
+                    .createNativeQuery(SELECT_PRODUCTS_BY_NAME_ASC_ORDER, Product.class)
                     .setParameter("name", "%" + name + "%");
             products.addAll(query.list());
 
@@ -161,7 +161,7 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session.createQuery(SELECT_PRODUCTS_BY_NAME_DESC_ORDER, Product.class)
+            NativeQuery<Product> query = session.createNativeQuery(SELECT_PRODUCTS_BY_NAME_DESC_ORDER, Product.class)
                     .setParameter("name", "%" + name + "%");
             products.addAll(query.list());
 
@@ -186,7 +186,7 @@ public class ProductDAOHQL {
             tr.begin();
 
             //action
-            Query<Product> query = session.createQuery(SELECT_PRODUCTS_BY_PRICE_DESC_ORDER, Product.class)
+            NativeQuery<Product> query = session.createNativeQuery(SELECT_PRODUCTS_BY_PRICE_DESC_ORDER, Product.class)
                     .setParameter("from", price - delta)
                     .setParameter("to", price + delta);
             products.addAll(query.list());
