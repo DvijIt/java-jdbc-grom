@@ -233,8 +233,6 @@ public class ProductDAO {
 
     }
 
-
-
     public static SessionFactory createSessionFactory() {
         if (sessionFactory == null) {
             sessionFactory = new Configuration().configure().buildSessionFactory();

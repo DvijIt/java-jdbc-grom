@@ -12,6 +12,8 @@
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
 <!--    <mapping class="hibernate.lesson1.Product"/>-->
-    <mapping class="hibernate.lesson2.Product"/>
+<!--    <mapping class="hibernate.lesson2.Product"/>-->
+    <mapping class="hibernate.lesson3.entity.Hotel"/>
+    <mapping class="hibernate.lesson3.entity.Room"/>
   </session-factory>
 </hibernate-configuration>
