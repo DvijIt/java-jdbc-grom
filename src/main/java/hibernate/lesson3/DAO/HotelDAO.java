@@ -71,6 +71,11 @@ public class HotelDAO extends DAO<Hotel> {
             tr.begin();
 
             //action
+            if (session.contains(hotel)) {
+                session.refresh(hotel);
+                System.out.println("refresh");
+            }
+            session.load(Hotel.class, hotel.getId());
             session.update(hotel);
 
             //close session/tr
@@ -105,6 +110,9 @@ public class HotelDAO extends DAO<Hotel> {
 
             //action
             Hotel hotel = session.load(Hotel.class, id);
+            if (session.contains(hotel)) {
+                session.refresh(hotel);
+            }
             session.find(Hotel.class, id);
 
             //close session/tr

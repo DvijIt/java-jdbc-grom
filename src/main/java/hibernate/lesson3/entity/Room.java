@@ -84,7 +84,7 @@ public class Room {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HOTEL_ID")
+    @JoinColumn(name = "HOTEL_ID", nullable=false)
     public Hotel getHotel() {
         return hotel;
     }
