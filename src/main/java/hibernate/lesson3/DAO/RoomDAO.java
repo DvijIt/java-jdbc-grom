@@ -1,5 +1,6 @@
 package hibernate.lesson3.DAO;
 
+import hibernate.lesson3.entity.Hotel;
 import hibernate.lesson3.entity.Room;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -69,7 +70,7 @@ public class RoomDAO extends DAO<Room> {
             tr.begin();
 
             //action
-            session.update(room);
+            session.update(session.load(Room.class, room.getId()));
 
             //close session/tr
             tr.commit();
@@ -89,11 +90,8 @@ public class RoomDAO extends DAO<Room> {
 
     @Override
     public Room findById(long id) {
-        Session session = null;
         Transaction tr = null;
-        try {
-            //create session/tr
-            session = createSessionFactory().openSession();
+        try (Session session = createSessionFactory().openSession()) {
             tr = session.getTransaction();
             tr.begin();
 
@@ -110,10 +108,6 @@ public class RoomDAO extends DAO<Room> {
 
             if (tr != null) {
                 tr.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
             }
         }
 

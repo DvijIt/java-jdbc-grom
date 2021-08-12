@@ -62,21 +62,13 @@ public class HotelDAO extends DAO<Hotel> {
 
     @Override
     public Hotel update(Hotel hotel) {
-        Session session = null;
         Transaction tr = null;
-        try {
-            //create session/tr
-            session = createSessionFactory().openSession();
+        try (Session session = createSessionFactory().openSession()) {
+
             tr = session.getTransaction();
             tr.begin();
 
-            //action
-            if (session.contains(hotel)) {
-                session.refresh(hotel);
-                System.out.println("refresh");
-            }
-            session.load(Hotel.class, hotel.getId());
-            session.update(hotel);
+            session.update(session.load(Hotel.class, hotel.getId()));
 
             //close session/tr
             tr.commit();
@@ -87,10 +79,6 @@ public class HotelDAO extends DAO<Hotel> {
             if (tr != null) {
                 tr.rollback();
             }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
 
         System.out.println("Update is done");
@@ -100,11 +88,8 @@ public class HotelDAO extends DAO<Hotel> {
 
     @Override
     public Hotel findById(long id) {
-        Session session = null;
         Transaction tr = null;
-        try {
-            //create session/tr
-            session = createSessionFactory().openSession();
+        try (Session session = createSessionFactory().openSession()) {
             tr = session.getTransaction();
             tr.begin();
 
@@ -125,10 +110,6 @@ public class HotelDAO extends DAO<Hotel> {
 
             if (tr != null) {
                 tr.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
             }
         }
 

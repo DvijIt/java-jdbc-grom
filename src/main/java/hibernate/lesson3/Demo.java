@@ -32,6 +32,7 @@ public class Demo {
 
         //update +
         hotel.setName("NotHotel");
+        hotel.setId(hotelId);
         hotelDAO.update(hotel);
 //
 //        //correct value +
