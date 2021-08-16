@@ -1,11 +1,18 @@
-package hibernate.lesson3.DAO;
+package hibernate.lesson4.DAO;
 
-import hibernate.lesson3.entity.Hotel;
+import hibernate.lesson4.entity.Hotel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static hibernate.lesson4.utils.SessionFactoryCreator.createSessionFactory;
 
 public class HotelDAO extends DAO<Hotel> {
+    private static final String SELECT_PRODUCTS_BY_NAME = "SELECT * FROM Products p WHERE p.name=:name";
 
     @Override
     public Hotel save(Hotel hotel) {
@@ -119,5 +126,59 @@ public class HotelDAO extends DAO<Hotel> {
 
         return null;
     }
+
+    public Hotel findHotelByName(String name) {
+        Hotel hotel = new Hotel();
+        Transaction tr = null;
+        try (Session session = createSessionFactory().openSession()) {
+            tr = session.getTransaction();
+            tr.begin();
+
+            //action
+            NativeQuery<Hotel> query = session.createNativeQuery(SELECT_PRODUCTS_BY_NAME, Hotel.class)
+                    .setParameter("name", name);
+
+            hotel = query.getSingleResult();
+
+            //close session/transaction
+            tr.commit();
+        } catch (HibernateException e) {
+            System.err.println("Hotel with name: " + name + " not found");
+            System.err.println(e.getMessage());
+
+            if (tr != null) {
+                tr.rollback();
+            }
+        }
+        return hotel;
+    }
+
+    public Hotel findHotelByCity(String city) {
+        Hotel hotel = new Hotel();
+        Transaction tr = null;
+        try (Session session = createSessionFactory().openSession()) {
+            tr = session.getTransaction();
+            tr.begin();
+
+            //action
+            NativeQuery<Hotel> query = session.createNativeQuery(SELECT_PRODUCTS_BY_NAME, Hotel.class)
+                    .setParameter("city", city);
+
+            hotel = query.getSingleResult();
+
+            //close session/transaction
+            tr.commit();
+        } catch (HibernateException e) {
+            System.err.println("Hotel from city: " + city + " not found");
+            System.err.println(e.getMessage());
+
+            if (tr != null) {
+                tr.rollback();
+            }
+        }
+        return hotel;
+    }
+
+
 
 }

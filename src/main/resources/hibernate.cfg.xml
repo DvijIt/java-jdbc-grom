@@ -13,7 +13,11 @@
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
 <!--    <mapping class="hibernate.lesson1.Product"/>-->
 <!--    <mapping class="hibernate.lesson2.Product"/>-->
-    <mapping class="hibernate.lesson3.entity.Hotel"/>
-    <mapping class="hibernate.lesson3.entity.Room"/>
+<!--    <mapping class="hibernate.lesson3.entity.Hotel"/>-->
+<!--    <mapping class="hibernate.lesson3.entity.Hotel"/>-->
+    <mapping class="hibernate.lesson4.entity.Hotel"/>
+    <mapping class="hibernate.lesson4.entity.Room"/>
+    <mapping class="hibernate.lesson4.entity.User"/>
+    <mapping class="hibernate.lesson4.entity.Order"/>
   </session-factory>
 </hibernate-configuration>

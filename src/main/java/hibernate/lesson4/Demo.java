@@ -1,11 +1,8 @@
-package hibernate.lesson3;
+package hibernate.lesson4;
 
 import hibernate.lesson3.DAO.HotelDAO;
 import hibernate.lesson3.DAO.RoomDAO;
 import hibernate.lesson3.entity.Hotel;
-import hibernate.lesson3.entity.Room;
-
-import java.util.Date;
 
 public class Demo {
     public static void main(String[] args) {

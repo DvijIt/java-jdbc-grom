@@ -1,14 +1,17 @@
-package hibernate.lesson3.DAO;
 
-import hibernate.lesson3.entity.Hotel;
+package hibernate.lesson4.DAO;
+
+import hibernate.lesson4.entity.Order;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class HotelDAO extends DAO<Hotel> {
+import static hibernate.lesson4.utils.SessionFactoryCreator.createSessionFactory;
+
+public class OrderDAO extends DAO<Order> {
 
     @Override
-    public Hotel save(Hotel hotel) {
+    public Order save(Order order) {
         Transaction tr = null;
         try (Session session = createSessionFactory().openSession()) {
             //create session/tr
@@ -16,7 +19,7 @@ public class HotelDAO extends DAO<Hotel> {
             tr.begin();
 
             //action
-            session.save(hotel);
+            session.save(order);
 
             //close session/tr
             tr.commit();
@@ -31,7 +34,7 @@ public class HotelDAO extends DAO<Hotel> {
 
         System.out.println("Save is done");
 
-        return hotel;
+        return order;
     }
 
     @Override
@@ -43,8 +46,8 @@ public class HotelDAO extends DAO<Hotel> {
             tr.begin();
 
             //action
-            Hotel hotel = session.load(Hotel.class, id);
-            session.delete(hotel);
+            Order order = session.load(Order.class, id);
+            session.delete(order);
 
             //close session/tr
             tr.commit();
@@ -61,21 +64,18 @@ public class HotelDAO extends DAO<Hotel> {
     }
 
     @Override
-    public Hotel update(Hotel hotel) {
+    public Order update(Order order) {
         Transaction tr = null;
         try (Session session = createSessionFactory().openSession()) {
-
+            //create session/tr
             tr = session.getTransaction();
             tr.begin();
 
-            session.update(hotel);
+            //action
+            session.update(session.load(Order.class, order.getId()));
 
             //close session/tr
             tr.commit();
-
-            System.out.println("Update is done");
-
-            return session.load(Hotel.class, hotel.getId());
         } catch (HibernateException e) {
             System.err.println("Update is failed");
             System.err.println(e.getMessage());
@@ -85,37 +85,35 @@ public class HotelDAO extends DAO<Hotel> {
             }
         }
 
-        return null;
+        System.out.println("Update is done");
+
+        return order;
     }
 
     @Override
-    public Hotel findById(long id) {
+    public Order findById(long id) {
         Transaction tr = null;
         try (Session session = createSessionFactory().openSession()) {
             tr = session.getTransaction();
             tr.begin();
 
             //action
-            Hotel hotel = session.load(Hotel.class, id);
-            if (session.contains(hotel)) {
-                session.refresh(hotel);
-            }
-            session.find(Hotel.class, id);
+            Order order = session.find(Order.class, id);
 
             //close session/tr
             tr.commit();
 
-            System.out.println("Find is done");
-
-            return hotel;
+            return order;
         } catch (HibernateException e) {
-            System.err.println("Find is failed");
+            System.err.println("Delete is failed");
             System.err.println(e.getMessage());
 
             if (tr != null) {
                 tr.rollback();
             }
         }
+
+        System.out.println("Delete is done");
 
         return null;
     }
